@@ -1,12 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="StyleAttributes.aspx.cs" Inherits="BeforeWebForms.ControlSamples.DataList.StyleAttributes" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="HeaderStyleAsAttributes.aspx.cs" Inherits="BeforeWebForms.ControlSamples.DataList.HeaderStyleAsAttributes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>DataList Styles</h2>
+    <h2>DataList TableItemStyle</h2>
 
     <div>
-        usage samples <a href="Default.aspx">Default Sample</a>|<a href="FlowLayout.aspx">FlowLayout Sample</a>|<a href="StyleAttributes.aspx">Styles</a>|<a href="HeaderStyleAsAttributes" />HeaderStyleAsAttribute Sample</a>|<a href="RepeatColumns.aspx">Repeat Columns Sample</a>
+        Other usage samples: <a href="Default.aspx">Simple Layout Sample</a>  <a href="FlowLayout.aspx">FlowLayout Sample</a>  <a href="StyleAttributes.aspx">Styles</a>
     </div>
+
     <p>
         Here is a simple datalist bound to a collection of widgets.  We're testing and showing the various
 		style attributes that can be set on the DataList
@@ -25,15 +26,10 @@
         GridLines="Vertical"
         UseAccessibleHeader="true"
         ItemType="SharedSampleObjects.Models.Widget">
-        <HeaderTemplate>
-            My Widget List
-        </HeaderTemplate>
+        <HeaderStyle BackColor="#0000ff" BorderStyle="Solid" BorderColor="Black" BorderWidth="2" />
+        <HeaderTemplate>HeaderTemplate</HeaderTemplate>
         <FooterTemplate>End of Line</FooterTemplate>
-        <ItemTemplate>
-            <%# Item.Name %>
-            <br />
-            <%# Item.Price.ToString("c") %>
-        </ItemTemplate>
+        <ItemTemplate><%# Item.Name %></ItemTemplate>
     </asp:DataList>
 
 </asp:Content>

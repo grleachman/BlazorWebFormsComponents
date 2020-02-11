@@ -111,6 +111,7 @@
     <Content Include="Content\Images\csharp_56.png" />
     <Content Include="Content\Site.css" />
     <Content Include="ControlSamples\DataList\RepeatColumns.aspx" />
+    <Content Include="ControlSamples\DataList\HeaderStyleAsAttributes.aspx" />
     <Content Include="ControlSamples\DataList\StyleAttributes.aspx" />
     <Content Include="ControlSamples\DataList\FlowLayout.aspx" />
     <Content Include="ControlSamples\DataList\Default.aspx" />
@@ -174,6 +175,12 @@
     </Compile>
     <Compile Include="ControlSamples\DataList\RepeatColumns.aspx.designer.cs">
       <DependentUpon>RepeatColumns.aspx</DependentUpon>
+    <Compile Include="ControlSamples\DataList\HeaderStyleAsAttributes.aspx.cs">
+      <DependentUpon>HeaderStyleAsAttributes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ControlSamples\DataList\HeaderStyleAsAttributes.aspx.designer.cs">
+      <DependentUpon>HeaderStyleAsAttributes.aspx</DependentUpon>
     </Compile>
     <Compile Include="ControlSamples\DataList\StyleAttributes.aspx.cs">
       <DependentUpon>StyleAttributes.aspx</DependentUpon>

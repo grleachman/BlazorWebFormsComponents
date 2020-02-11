@@ -5,7 +5,7 @@
     <h2>DataList control homepage</h2>
 
     <div>
-        usage samples <a href="Default.aspx">Default Sample</a>|<a href="FlowLayout.aspx">FlowLayout Sample</a>|<a href="StyleAttributes.aspx">Styles</a>|<a href="RepeatColumns.aspx">Repeat Columns Sample</a>
+        usage samples <a href="Default.aspx">Default Sample</a>|<a href="FlowLayout.aspx">FlowLayout Sample</a>|<a href="StyleAttributes.aspx">Styles</a>|<a href="HeaderStyleAsAttributes">HeaderStyleAsAttribute Sample</a>|<a href="RepeatColumns.aspx">Repeat Columns Sample</a>
     </div>
 
     <p>
