@@ -173,8 +173,9 @@
       <DependentUpon>RepeatColumns.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ControlSamples\DataList\RepeatColumns.aspx.designer.cs">
-      <DependentUpon>RepeatColumns.aspx</DependentUpon>
+		<Compile Include="ControlSamples\DataList\RepeatColumns.aspx.designer.cs">
+			<DependentUpon>RepeatColumns.aspx</DependentUpon>
+		</Compile>
     <Compile Include="ControlSamples\DataList\HeaderStyleAsAttributes.aspx.cs">
       <DependentUpon>HeaderStyleAsAttributes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
