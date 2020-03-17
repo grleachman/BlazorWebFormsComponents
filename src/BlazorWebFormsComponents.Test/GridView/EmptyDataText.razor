@@ -14,7 +14,16 @@
 		void FirstTest()
 		{
 			var cut = GetComponentUnderTest();
+			System.Diagnostics.Debug.WriteLine(cut.Markup);
 			var tableHeaders = cut.FindAll("th").ToList();
+			var headers = string.Join(",", tableHeaders.Select(x => x.TextContent).ToList());
+			headers.ShouldBe("Id,Name,Price,LastUpdate,EmptyWidgetList,SimpleWidgetList");
+			tableHeaders[0].TextContent.ShouldBe("Id");
+			tableHeaders[1].TextContent.ShouldBe("Name");
+			tableHeaders[2].TextContent.ShouldBe("Price");
+			tableHeaders[3].TextContent.ShouldBe("LastUpdate");
+			tableHeaders[4].TextContent.ShouldBe("EmptyWidgetList");
+			tableHeaders[5].TextContent.ShouldBe("SimpleWidgetList");
 			tableHeaders.Count.ShouldBe(6, "Did not render 6 TH elements");
 			cut.FindAll("tr").Count(e => e.InnerHtml.Contains("td")).ShouldBe(1, "Did not render 1 TR elements");
 			cut.FindAll("td").Count().ShouldBe(1, "Did not render 0 TD elements");
