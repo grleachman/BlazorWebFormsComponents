@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SharedSampleObjects.Models
 {
-  public class Customer
-  {
+	public class Customer
+	{
+		[Display(Name = "CId", Order = 7)]
 		public int CustomerID { get; set; }
 
+		[Display(Name = "First", Order = 2)]
 		public string FirstName { get; set; }
 
+		[Display(Name = "Last", Order = 1)]
 		public string LastName { get; set; }
 
 		public string CompanyName { get; set; }

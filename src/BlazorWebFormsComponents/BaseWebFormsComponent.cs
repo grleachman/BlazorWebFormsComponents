@@ -255,6 +255,7 @@ namespace BlazorWebFormsComponents
 		/// The list of child controls
 		/// </summary>
 		public List<BaseWebFormsComponent> Controls { get; set; } = new List<BaseWebFormsComponent>();
+		public bool DesignMode { get; internal set; }
 
 		/// <summary>
 		/// Finds a child control by its ID

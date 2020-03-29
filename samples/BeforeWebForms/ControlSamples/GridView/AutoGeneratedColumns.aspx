@@ -12,7 +12,7 @@
 	<asp:gridview id="CustomersGridView" 
     emptydatatext="No data available."
     selectMethod="GetCustomers"
-    ItemType="BeforeWebForms.ControlSamples.GridView.Customer"
+    ItemType="SharedSampleObjects.Models.Customer"
     runat="server" DataKeyNames="CustomerID">
   </asp:gridview>
 

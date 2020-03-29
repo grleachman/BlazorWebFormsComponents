@@ -8,6 +8,8 @@ namespace BlazorWebFormsComponents
 {
 	public class Style : IHasStyle
 	{
+		internal bool _isDirty { get; set; }
+		public void SetDirty() => _isDirty = true;
 
 		internal Style() { }
 
