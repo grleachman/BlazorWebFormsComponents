@@ -10,27 +10,31 @@
 </Fixture>
 
 @code {
-		void FirstTest()
+	void FirstTest()
+	{
+		var cut = GetComponentUnderTest();
+		System.Diagnostics.Debug.WriteLine(cut.Markup);
+		var tableHeaders = cut.FindAll("th").ToList();
+		tableHeaders.Count.ShouldBe(4, "Did not render 4 TH elements");
+
+		try
 		{
-			var cut = GetComponentUnderTest();
-			var tableHeaders = cut.FindAll("th").ToList();
-			tableHeaders.Count.ShouldBe(4, "Did not render 4 TH elements");
-
-			try {
-				tableHeaders[0].TextContent.ShouldBe("Id");
-			} catch (Exception ex) {
-				Console.WriteLine("HTML rendered: " + cut.Markup);
-				throw;
-			}
-
-			tableHeaders[1].TextContent.ShouldBe("Name");
-			tableHeaders[2].TextContent.ShouldBe("Price");
-			tableHeaders[3].TextContent.ShouldBe("LastUpdate");
+			tableHeaders[0].TextContent.ShouldBe("Id");
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine("HTML rendered: " + cut.Markup);
+			throw;
 		}
 
-		IQueryable<Widget> GetWidgets(int maxRows, int startRowIndex, string sortByExpression, out int totalRowCount)
-		{
-			totalRowCount = Widget.SimpleWidgetList.Length;
-			return Widget.SimpleWidgetList.AsQueryable();
-		}
+		tableHeaders[1].TextContent.ShouldBe("Name");
+		tableHeaders[2].TextContent.ShouldBe("Price");
+		tableHeaders[3].TextContent.ShouldBe("LastUpdate");
+	}
+
+	IQueryable<Widget> GetWidgets(int maxRows, int startRowIndex, string sortByExpression, out int totalRowCount)
+	{
+		totalRowCount = Widget.SimpleWidgetList.Length;
+		return Widget.SimpleWidgetList.AsQueryable();
+	}
 }

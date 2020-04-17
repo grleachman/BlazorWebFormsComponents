@@ -6,14 +6,14 @@
 							AutogenerateColumns="false"
 							ItemType="SharedSampleObjects.Models.Widget">
 			<Columns>
-				<TemplateField ItemType="Widget" HeaderText="Name">
+				<TemplateField HeaderText="Name">
 					<ItemTemplate Context="Item">
-						<label Text="@Item.Name"></label>
+						<label></label>
 					</ItemTemplate>
 				</TemplateField>
-				<TemplateField ItemType="Widget" HeaderText="Price">
+				<TemplateField HeaderText="Price">
 					<ItemTemplate Context="Item">
-						<label ID="lblPrice" Text="@Item.Price.ToString()"></label>
+						<button></button>
 					</ItemTemplate>
 				</TemplateField>
 			</Columns>
@@ -26,16 +26,19 @@
 	void FirstTest()
 	{
 		var cut = GetComponentUnderTest();
-		System.Diagnostics.Debug.Write(cut.Markup);
+
+		System.Diagnostics.Debug.WriteLine(cut.Markup);
 		var tableHeaders = cut.FindAll("th");
 		tableHeaders[0].TextContent.ShouldBe("Name");
 		tableHeaders[1].TextContent.ShouldBe("Price");
 		tableHeaders.Count.ShouldBe(2, "Did not render 2 TH elements");
 		cut.FindAll("tr").Count(e => e.InnerHtml.Contains("td")).ShouldBe(3, "Did not render 3 TR elements");
-		cut.FindAll("td label").Count().ShouldBe(6, "Did not render 6 labels");
+		cut.FindAll("td").Count(e => e.InnerHtml.Contains("label")).ShouldBe(3, "Did not render 3 labels");
+		cut.FindAll("td").Count(e => e.InnerHtml.Contains("button")).ShouldBe(3, "Did not render 3 buttons");
 	}
 
-	IQueryable<Widget> GetWidgets(int maxRows, int startRowIndex, string sortByExpression, out int totalRowCount)
+	IQueryable<Widget>
+	GetWidgets(int maxRows, int startRowIndex, string sortByExpression, out int totalRowCount)
 	{
 		totalRowCount = Widget.SimpleWidgetList.Length;
 		return Widget.SimpleWidgetList.AsQueryable();
