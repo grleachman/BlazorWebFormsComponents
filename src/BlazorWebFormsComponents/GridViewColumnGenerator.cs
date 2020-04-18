@@ -9,11 +9,30 @@ namespace BlazorWebFormsComponents
 	public static class GridViewColumnGenerator
 	{
 		/// <summary>
-		/// Generate columns for a given GridView based on the properties of given Type
+		/// Generate columns for a given GridView based on the columns collection
 		/// </summary>
 		/// <typeparam name="ItemType"> The type </typeparam>
 		/// <param name="gridView"> The GridView </param>
 		public static void GenerateColumns<ItemType>(GridView<ItemType> gridView)
+		{
+			var type = typeof(ItemType);
+			var propertiesInfo = type.GetProperties(BindingFlags.Instance | BindingFlags.Public).OrderBy(x => x.MetadataToken);
+			foreach (var propertyInfo in propertiesInfo)
+			{
+				var newColumn = new BoundField
+				{
+					DataField = propertyInfo.Name,
+					HeaderText = propertyInfo.Name
+				};
+				gridView.ColumnsList.Add(newColumn);
+			}
+		}
+		/// <summary>
+		/// Generate columns for a given GridView based on the properties of given Type
+		/// </summary>
+		/// <typeparam name="ItemType"> The type </typeparam>
+		/// <param name="gridView"> The GridView </param>
+		public static void AutoGenerateColumns<ItemType>(GridView<ItemType> gridView)
 		{
 			var type = typeof(ItemType);
 			var propertiesInfo = type.GetProperties(BindingFlags.Instance | BindingFlags.Public).OrderBy(x => x.MetadataToken);

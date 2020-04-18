@@ -16,7 +16,7 @@ namespace BlazorWebFormsComponents
 		/// </summary>
 		[Parameter] public bool AutogenerateColumns { get; set; } = true;
 
-		[Parameter] public RenderFragment Columns { get; set; }
+		[Parameter] public RenderFragment<List<BaseColumn>> Columns { get; set; }
 
 		public List<BoundField> ColumnsList { get; set; } = new List<BoundField>();
 
@@ -50,10 +50,10 @@ namespace BlazorWebFormsComponents
 		protected override void OnInitialized()
 		{
 			base.OnInitialized();
-			if (AutogenerateColumns)
-			{
-				GridViewColumnGenerator.GenerateColumns(this);
-			}
+			GridViewColumnGenerator.GenerateColumns(this);
+
+
+
 		}
 	}
 }
