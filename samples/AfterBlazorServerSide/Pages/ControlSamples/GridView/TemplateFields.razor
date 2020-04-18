@@ -1,53 +1,54 @@
-﻿@page "/ControlSamples/GridView/TemplateFields"
-<h2>GridView Control</h2>
+﻿@*@page "/ControlSamples/GridView/TemplateFields"
+	<h2>GridView Control</h2>
 
-<Nav></Nav>
+	<Nav></Nav>
 
-<GridView @ref="TemplateFieldGridView"
-					AutogenerateColumns="false"
-					ItemType="SharedSampleObjects.Models.Widget">
-	<Columns>
-		<TemplateField HeaderText="Name" ItemType="SharedSampleObjects.Models.Widget">
-			<ItemTemplate Context="Item">
-				<Label ID="lblName" Text="@Item.Name"></Label>
-			</ItemTemplate>
-		</TemplateField>
-		<TemplateField HeaderText="Price" ItemType="SharedSampleObjects.Models.Widget">
-			<ItemTemplate Context="Item">
-				<Label ID="lblPrice" Text="@Item.Price.ToString()"></Label>
-			</ItemTemplate>
-		</TemplateField>
-	</Columns>
-</GridView>
+	<GridView @ref="TemplateFieldGridView"
+						AutogenerateColumns="false"
+						ItemType="Widget"
+						Context="Item">
+		<Columns>
+			<TemplateField HeaderText="Name">
+				<ItemTemplate>
+					<Label ID="lblName" Text="@Item.Name"></Label>
+				</ItemTemplate>
+			</TemplateField>
+			<TemplateField HeaderText="Price">
+				<ItemTemplate>
+					<Label ID="lblPrice" Text="@Item.Price.ToString()"></Label>
+				</ItemTemplate>
+			</TemplateField>
+		</Columns>
+	</GridView>
 
-<Button OnClick="Unnamed_Click">Click Me!</Button>
+	<Button OnClick="Unnamed_Click">Click Me!</Button>
 
-@code{
+	@code{
 
-	BlazorWebFormsComponents.GridView<Widget> TemplateFieldGridView { get; set; }
+		BlazorWebFormsComponents.GridView<Widget> TemplateFieldGridView { get; set; }
 
-	private static bool PriceVisibility { get; set; } = true;
+		private static bool PriceVisibility { get; set; } = true;
 
-	protected override void OnAfterRender(bool firstRender)
-	{
-
-		if (firstRender)
+		protected override void OnAfterRender(bool firstRender)
 		{
-			TemplateFieldGridView.DataSource = Widget.Widgets(8);
-			TemplateFieldGridView.DataBind();
+
+			if (firstRender)
+			{
+				TemplateFieldGridView.DataSource = Widget.Widgets(8);
+				TemplateFieldGridView.DataBind();
+			}
+
+			base.OnAfterRender(firstRender);
+
 		}
 
-		base.OnAfterRender(firstRender);
-
-	}
-
-	protected void Unnamed_Click()
-	{
-		foreach (GridViewRow<Widget> row in TemplateFieldGridView.Rows)
+		protected void Unnamed_Click()
 		{
-			var label = row.FindControl("lblPrice") as Label;
-			label.Visible = !PriceVisibility;
+			foreach (GridViewRow<Widget> row in TemplateFieldGridView.Rows)
+			{
+				var label = row.FindControl("lblPrice") as Label;
+				label.Visible = !PriceVisibility;
+			}
+			PriceVisibility = !PriceVisibility;
 		}
-		PriceVisibility = !PriceVisibility;
-	}
-}
+	}*@

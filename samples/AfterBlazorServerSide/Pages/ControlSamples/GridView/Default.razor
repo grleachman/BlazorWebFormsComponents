@@ -1,23 +1,24 @@
-﻿@page "/ControlSamples/GridView"
-<h2>GridView Default Example</h2>
+﻿@*@page "/ControlSamples/GridView"
+	<h2>GridView Default Example</h2>
 
-<Nav />
+	<Nav />
 
-<GridView ItemType="Customer"
-					AutogenerateColumns="false"
-					DataKeyNames="CustomerID"
-					SelectMethod="Customer.GetCustomers"
-					EmptyDataText="No data available">
-	<Columns>
-		<BoundField ItemType="Customer" DataField="CustomerID" HeaderText="ID" />
-		<BoundField ItemType="Customer" DataField="CompanyName" HeaderText="CompanyName" />
-		<BoundField ItemType="Customer" DataField="FirstName" HeaderText="FirstName"/>
-		<BoundField ItemType="Customer" DataField="LastName" HeaderText="LastName"/>
-		<TemplateField ItemType="Customer">
-			<ItemTemplate Context="Item">
-				<button type="button">Click Me! @Item.FirstName</button>
-			</ItemTemplate>
-		</TemplateField>
-	</Columns>
-</GridView>
+	<GridView ItemType="Customer"
+						AutogenerateColumns="false"
+						DataKeyNames="CustomerID"
+						SelectMethod="Customer.GetCustomers"
+						Context="Item"
+						EmptyDataText="No data available">
+		<Columns>
+			<BoundField DataField="CustomerID" HeaderText="ID" />
+			<BoundField DataField="CompanyName" HeaderText="CompanyName" />
+			<BoundField DataField="FirstName" HeaderText="FirstName" />
+			<BoundField DataField="LastName" HeaderText="LastName" />
+			<TemplateField>
+				<ItemTemplate>
+					<button type="button">Click Me! @Item.FirstName</button>
+				</ItemTemplate>
+			</TemplateField>
+		</Columns>
+	</GridView>*@
 

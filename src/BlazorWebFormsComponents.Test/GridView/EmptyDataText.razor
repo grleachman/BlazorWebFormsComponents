@@ -1,15 +1,15 @@
-﻿@inherits TestComponentBase
-<Fixture Test="FirstTest">
-	<ComponentUnderTest>
-		<GridView ItemType="Widget"
-							SelectMethod="GetWidgets"
-							AutogenerateColumns="true"
-							EmptyDataText="TestText">
-		</GridView>
-	</ComponentUnderTest>
-</Fixture>
+﻿@*@inherits TestComponentBase
+	<Fixture Test="FirstTest">
+		<ComponentUnderTest>
+			<GridView ItemType="Widget"
+								SelectMethod="GetWidgets"
+								AutogenerateColumns="true"
+								EmptyDataText="TestText">
+			</GridView>
+		</ComponentUnderTest>
+	</Fixture>
 
-@code {
+	@code {
 
 		void FirstTest()
 		{
@@ -27,4 +27,4 @@
 			var widgetList = new List<Widget>();
 			return widgetList.AsQueryable();
 		}
-}
+	}*@
