@@ -1,6 +1,6 @@
-﻿using BlazorWebFormsComponents.Interfaces;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlazorWebFormsComponents
 {
@@ -8,13 +8,25 @@ namespace BlazorWebFormsComponents
 	/// Blazor version of WebForms GridView control
 	/// </summary>
 	/// <typeparam name="ItemType"></typeparam>
-  public partial class GridView<ItemType> : BaseModelBindingComponent<ItemType>, IRowCollection<ItemType>, IColumnCollection<ItemType>
-  {
+	public partial class GridView<ItemType> : ListView<ItemType>
+	{
 
 		/// <summary>
 		///	Specify if the GridView component will autogenerate its columns
 		/// </summary>
 		[Parameter] public bool AutogenerateColumns { get; set; } = true;
+
+		[Parameter] public RenderFragment Columns { get; set; }
+
+		public List<BoundField> BoundFields { get; set; } = new List<BoundField>();
+
+		public IEnumerable<string> HeaderRow()
+		{
+			foreach (var x in BoundFields)
+			{
+				yield return x.HeaderText;
+			}
+		}
 
 		/// <summary>
 		/// Text to show when there are no items to show
@@ -32,26 +44,8 @@ namespace BlazorWebFormsComponents
 		[Parameter] public string CssClass { get; set; }
 
 		///<inheritdoc/>
-		public List<IColumn<ItemType>> ColumnList { get; set; } = new List<IColumn<ItemType>>();
-
-		/// <summary>
-		/// The Rows of the GridView
-		/// </summary>
-		public List<IRow<ItemType>> Rows { get => RowList; set => RowList = value; }
-
-		///<inheritdoc/>
-		public List<IRow<ItemType>> RowList { get; set; } = new List<IRow<ItemType>>();
 
 		#region Templates
-		/// <summary>
-		/// The columns template of the GridView
-		/// </summary>
-		[Parameter] public RenderFragment Columns { get; set; }
-
-		/// <summary>
-		/// The ChildContent of the GridView
-		/// </summary>
-		[Parameter] public RenderFragment ChildContent { get; set; }
 		#endregion
 		protected override void OnInitialized()
 		{
@@ -61,34 +55,5 @@ namespace BlazorWebFormsComponents
 				GridViewColumnGenerator.GenerateColumns(this);
 			}
 		}
-
-		///<inheritdoc/>
-		public void AddColumn(IColumn<ItemType> column)
-		{
-			ColumnList.Add(column);
-			StateHasChanged();
-		}
-
-		///<inheritdoc/>
-		public void RemoveColumn(IColumn<ItemType> column)
-		{
-			ColumnList.Remove(column);
-			StateHasChanged();
-		}
-
-		///<inheritdoc/>
-		public void RemoveRow(IRow<ItemType> row)
-		{
-			Rows.Remove(row);
-			StateHasChanged();
-		}
-
-		///<inheritdoc/>
-		public void AddRow(IRow<ItemType> row)
-		{
-			Rows.Add(row);
-			StateHasChanged();
-		}
-
 	}
 }
