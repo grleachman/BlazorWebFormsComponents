@@ -5,7 +5,7 @@ namespace BlazorWebFormsComponents
 	/// <summary>
 	/// Bounds an object's property to a column by its property name 
 	/// </summary>
-	public partial class BoundField<ItemType> :  BaseColumn<ItemType>
+	public partial class BoundField : BaseColumn
 	{
 
 		/// <summary>
@@ -20,6 +20,6 @@ namespace BlazorWebFormsComponents
 		[Parameter]
 		public string DataFormatString { get; set; } = null;
 
-		
+
 	}
 }

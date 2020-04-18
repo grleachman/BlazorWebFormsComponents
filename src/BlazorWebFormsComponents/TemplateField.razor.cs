@@ -5,11 +5,11 @@ namespace BlazorWebFormsComponents
 	/// <summary>
 	/// A template field column
 	/// </summary>
-	public partial class TemplateField<ItemType>: BaseColumn<ItemType>
+	public partial class TemplateField : BaseColumn
 	{
 		/// <summary>
 		/// The item template
 		/// </summary>
-		[Parameter] public RenderFragment<ItemType> ItemTemplate { get; set; }
+		[Parameter] public RenderFragment ItemTemplate { get; set; }
 	}
 }

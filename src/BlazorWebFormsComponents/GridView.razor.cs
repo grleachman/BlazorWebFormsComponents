@@ -18,11 +18,11 @@ namespace BlazorWebFormsComponents
 
 		[Parameter] public RenderFragment Columns { get; set; }
 
-		public List<BoundField> BoundFields { get; set; } = new List<BoundField>();
+		public List<BoundField> ColumnsList { get; set; } = new List<BoundField>();
 
 		public IEnumerable<string> HeaderRow()
 		{
-			foreach (var x in BoundFields)
+			foreach (var x in ColumnsList)
 			{
 				yield return x.HeaderText;
 			}
