@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorWebFormsComponents.Interfaces;
+using Microsoft.AspNetCore.Components;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,7 +10,7 @@ namespace BlazorWebFormsComponents
 	/// Blazor version of WebForms GridView control
 	/// </summary>
 	/// <typeparam name="ItemType"></typeparam>
-	public partial class GridView<ItemType> : ListView<ItemType>
+	public partial class GridView<ItemType> : ListView<ItemType>, IColumnCollection
 	{
 
 		/// <summary>
@@ -16,13 +18,11 @@ namespace BlazorWebFormsComponents
 		/// </summary>
 		[Parameter] public bool AutogenerateColumns { get; set; } = true;
 
-		[Parameter] public RenderFragment<List<BaseColumn>> Columns { get; set; }
-
-		public List<BoundField> ColumnsList { get; set; } = new List<BoundField>();
+		[Parameter] public RenderFragment Columns { get; set; }
 
 		public IEnumerable<string> HeaderRow()
 		{
-			foreach (var x in ColumnsList)
+			foreach (var x in ColumnList)
 			{
 				yield return x.HeaderText;
 			}
@@ -42,18 +42,22 @@ namespace BlazorWebFormsComponents
 		/// The css class of the GridView
 		/// </summary>
 		[Parameter] public string CssClass { get; set; }
+		public List<BoundField> ColumnList { get; set; } = new List<BoundField>();
 
-		///<inheritdoc/>
-
-		#region Templates
-		#endregion
 		protected override void OnInitialized()
 		{
 			base.OnInitialized();
 			GridViewColumnGenerator.GenerateColumns(this);
+			if (Items == null)
+			{
+				Items = new List<ItemType>();
+			}
+		}
 
-
-
+		public void AddColumn(BoundField column)
+		{
+			ColumnList.Add(column);
+			StateHasChanged();
 		}
 	}
 }

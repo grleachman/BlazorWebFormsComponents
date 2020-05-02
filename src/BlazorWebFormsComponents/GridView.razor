@@ -1,11 +1,13 @@
 ﻿@inherits ListView<ItemType>
 @typeparam ItemType
+
+
+
 <ListView runat="server"
 					ItemType="ItemType"
 					Context="Item"
 					Items="@Items">
-	<ItemTemplate><tr></tr></ItemTemplate>
-	<LayoutTemplate Context="itemPlaceHolder">
+	<EmptyDataTemplate>
 		<table class="table" id="gridview">
 			<thead>
 				@foreach (var h in HeaderRow())
@@ -14,10 +16,36 @@
 			}
 				</thead>
 				<tbody>
-					@itemPlaceHolder
+				<td colspan=@ColumnList.Count>
+					@EmptyDataText
+				</td>
 				</tbody>
 			</table>
-		</LayoutTemplate>
-	</ListView>
-	@code{
-	}
+		</EmptyDataTemplate>
+		<ItemTemplate>
+			<tr>
+				@foreach (var c in ColumnList)
+				{
+					<td>@DataBinder.Eval(c.DataField)</td>
+				}
+			</tr>
+		</ItemTemplate>
+		<LayoutTemplate Context="itemPlaceHolder">
+			<table class="table" id="gridview">
+				<thead>
+					@foreach (var h in HeaderRow())
+					{
+					<th>@h</th>
+				}
+					</thead>
+					<tbody>
+						@itemPlaceHolder
+					</tbody>
+				</table>
+			</LayoutTemplate>
+		</ListView>
+
+
+		<CascadingValue Value="this" Name="ColumnCollection">
+			@Columns
+		</CascadingValue>

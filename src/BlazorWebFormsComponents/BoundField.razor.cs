@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorWebFormsComponents.Interfaces;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazorWebFormsComponents
 {
 	/// <summary>
-	/// Bounds an object's property to a column by its property name 
+	/// Binds an object's property to a column by its property name 
 	/// </summary>
 	partial class BoundField : BaseColumn
 	{
-
+		[CascadingParameter(Name = "ColumnCollection")]
+		public IColumnCollection ParentColumnsCollection { get; set; }
 		/// <summary>
 		/// Specifies the name of the object's property bound to the column
 		/// </summary>
@@ -20,6 +22,9 @@ namespace BlazorWebFormsComponents
 		[Parameter]
 		public string DataFormatString { get; set; } = null;
 
-
+		protected override void OnInitialized()
+		{
+			ParentColumnsCollection.AddColumn(this);
+		}
 	}
 }
